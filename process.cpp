@@ -1,5 +1,4 @@
 #include "process.h"
-
 #include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -108,6 +107,7 @@ void bringToForeground(int jobID)
 
     cout << "Job not found." << endl;
 }
+
 
 // Resume stopped background job
 void resumeBackground(int jobID)
