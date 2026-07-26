@@ -10,10 +10,19 @@ SRC = main.cpp shell.cpp parser.cpp builtin.cpp process.cpp
 # Output File
 TARGET = shell
 
-# Build Target
-all:
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+SOURCES = main.cpp shell.cpp parser.cpp builtin.cpp process.cpp scheduler.cpp
 
-# Clean Compiled Files
+OBJECTS = $(SOURCES:.cpp=.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(TARGET)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(TARGET)
+	rm -f $(OBJECTS) $(TARGET)
+
+run: $(TARGET) ./$(TARGET)
